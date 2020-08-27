@@ -54,7 +54,7 @@ impl Game {
         if self.just_eaten {
             use rand::Rng;
             use rand::thread_rng;
-            // try my luck
+
             let mut r = thread_rng();
             loop {
                 let new_x = r.gen_range(0, self.cols);
@@ -81,7 +81,7 @@ impl Game {
     }
 }
 
-/// The direction the snake moves in.
+
 #[derive(Clone, PartialEq)]
 enum Direction {
     UP,
@@ -121,7 +121,7 @@ impl Snake {
         })
     }
 
-    /// Move the snake if valid, otherwise returns false.
+
     pub fn update(&mut self, just_eaten: bool, cols: u32, rows: u32) -> bool {
         let mut new_front: Snake_Piece =
             (*self.snake_parts.front().expect("No front of snake found.")).clone();
@@ -145,7 +145,7 @@ impl Snake {
             self.snake_parts.pop_back();
         }
 
-        // Checks self collision.
+
         if self.is_collide(new_front.0, new_front.1) {
             return false;
         }
@@ -165,7 +165,7 @@ pub struct Food {
 }
 
 impl Food {
-    // Return true if snake ate food this update
+
     fn update(&mut self, s: &Snake) -> bool {
         let front = s.snake_parts.front().unwrap();
         if front.0 == self.x && front.1 == self.y {
@@ -194,7 +194,7 @@ impl Food {
 }
 
 fn main() {
-    // Change this to OpenGL::V2_1 if this fails.
+
     let opengl = OpenGL::V3_2;
 
     const COLS: u32 = 30;
